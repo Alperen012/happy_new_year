@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Sevdiklerinize özel yeni yıl kutlama kartları oluşturun. Kişiselleştirilmiş mesajlarla 2025'e özel bir başlangıç yapın.">
+    <meta name="keywords" content="yeni yıl, kutlama kartı, 2025, mutlu yıllar, dijital kart">
+    <meta name="author" content="Happy New Year Card">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Özel Bir Yeni Yıl Mesajı Oluşturun">
+    <meta property="og:description" content="Sevdiklerinize kişiselleştirilmiş yeni yıl kutlama kartları gönderin.">
+    <meta property="og:type" content="website">
+
+    <title>✨ Yeni Yıl Dileklerini Paylaş</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎄</text></svg>">
+</head>
+
+<body class="creator-mode">
+    <!-- Tema Değiştirici -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
+        <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+        <span class="theme-toggle-label" id="themeLabel">Koyu Tema</span>
+    </button>
+
+    <!-- Arka Plan Dekorasyonları -->
+    <div class="bg-decorations">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
+    </div>
+
+    <!-- Parıltı Konteyneri (JS ile doldurulacak) -->
+    <div id="sparkleContainer"></div>
+
+    <!-- Kar Tanesi Konteyneri (JS ile doldurulacak) -->
+    <div id="snowContainer"></div>
+
+    <!-- Ana İçerik -->
+    <div class="container">
+        <header class="main-header">
+            <h1 class="main-title">Yeni Yıl Dileklerini Paylaş</h1>
+            <p class="subtitle">Sevdiklerinize özel tasarlanmış, kalıcı bir dijital kutlama kartı oluşturun.</p>
+        </header>
+
+        <main class="card creator-card">
+            <form id="messageForm" novalidate>
+                <div class="form-group">
+                    <label for="recipientName">Kime Gidiyor? 💝</label>
+                    <input type="text" id="recipientName" name="recipientName"
+                        placeholder="Örn: Ayşe, Canım Annem, Sevgili Dostum..." required autocomplete="off"
+                        maxlength="50">
+                </div>
+
+                <div class="form-group">
+                    <label for="messageBody">Mesajınız 💌</label>
+                    <textarea id="messageBody" name="messageBody" rows="5"
+                        placeholder="En içten yeni yıl dileklerinizi buraya yazın...
+
+Örnek: 2025 yılında tüm hayallerin gerçek olsun! Sağlık, mutluluk ve başarı dolu bir yıl geçirmeni diliyorum. Seni çok seviyorum! 🎉" required maxlength="500"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="senderName">Kimden? 🎁</label>
+                    <input type="text" id="senderName" name="senderName" placeholder="Sizin adınız" required
+                        autocomplete="off" maxlength="50">
+                </div>
+
+                <!-- Kişiselleştirme Seçenekleri -->
+                <div class="customization-section">
+                    <label class="section-label">🎨 Kart Stilini Seçin</label>
+                    <div class="style-options" id="styleOptions">
+                        <button type="button" class="style-btn active" data-style="gold" title="Altın">
+                            <span class="style-preview gold-style"></span>
+                            <span class="style-name">Altın</span>
+                        </button>
+                        <button type="button" class="style-btn" data-style="rose" title="Gül">
+                            <span class="style-preview rose-style"></span>
+                            <span class="style-name">Gül</span>
+                        </button>
+                        <button type="button" class="style-btn" data-style="emerald" title="Zümrüt">
+                            <span class="style-preview emerald-style"></span>
+                            <span class="style-name">Zümrüt</span>
+                        </button>
+                        <button type="button" class="style-btn" data-style="purple" title="Mor">
+                            <span class="style-preview purple-style"></span>
+                            <span class="style-name">Mor</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="customization-section">
+                    <label class="section-label">✨ Dekorasyon Emojisi</label>
+                    <div class="emoji-options" id="emojiOptions">
+                        <button type="button" class="emoji-btn active" data-emoji="🎄" title="Çam Ağacı">🎄</button>
+                        <button type="button" class="emoji-btn" data-emoji="🎁" title="Hediye">🎁</button>
+                        <button type="button" class="emoji-btn" data-emoji="⭐" title="Yıldız">⭐</button>
+                        <button type="button" class="emoji-btn" data-emoji="❄️" title="Kar Tanesi">❄️</button>
+                        <button type="button" class="emoji-btn" data-emoji="🎉" title="Konfeti">🎉</button>
+                        <button type="button" class="emoji-btn" data-emoji="💫" title="Parıltı">💫</button>
+                        <button type="button" class="emoji-btn" data-emoji="🌟" title="Parlak Yıldız">🌟</button>
+                        <button type="button" class="emoji-btn" data-emoji="❤️" title="Kalp">❤️</button>
+                    </div>
+                </div>
+
+                <!-- Kar Yoğunluğu Ayarı -->
+                <div class="customization-section snow-section">
+                    <label class="section-label">❄️ Kar Yoğunluğu</label>
+                    <div class="snow-slider-container">
+                        <div class="snow-slider-wrapper">
+                            <input type="range" id="snowIntensity" name="snowIntensity" min="0" max="100" value="50"
+                                class="snow-slider">
+                            <div class="snow-slider-track"></div>
+                            <div class="snow-slider-fill" id="snowSliderFill"></div>
+                        </div>
+                        <div class="snow-value-display">
+                            <span id="snowValueText">50</span>
+                            <span class="snow-icon">❄️</span>
+                        </div>
+                    </div>
+                    <div class="snow-labels">
+                        <span>Yok</span>
+                        <span>Hafif</span>
+                        <span>Normal</span>
+                        <span>Yoğun</span>
+                        <span>Tipi!</span>
+                    </div>
+                    <p class="snow-hint">Mesajı görüntüleyenin ekranında yağacak kar miktarını ayarlayın</p>
+                </div>
+
+
+                <!-- Kilitleme Seçeneği -->
+                <div class="customization-section lock-section">
+                    <label class="section-label">🔒 Mesajı Kilitle</label>
+                    <div class="lock-option">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="lockMessage" name="lockMessage">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="lock-description">Mesaj yeni yıl gece yarısı (00:00) açılsın</span>
+                    </div>
+                    <p class="lock-hint">Bu özellik aktifken, alıcı mesajı sadece 1 Ocak 00:00'dan sonra görebilir.</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="createBtn">
+                    Kutlama Kartını Oluştur ✨
+                </button>
+            </form>
+
+            <!-- Sonuç Alanı -->
+            <div id="resultArea" class="hidden">
+                <h3>🎉 Kartınız Hazır!</h3>
+                <p>Aşağıdaki bağlantıyı kopyalayıp sevdiklerinize gönderin.</p>
+                <div class="link-box">
+                    <input type="text" id="shareLink" readonly aria-label="Paylaşım linki">
+                    <button id="copyBtn" class="btn btn-secondary">
+                        📋 Kopyala
+                    </button>
+                </div>
+                <p class="copied-text hidden" id="copiedMsg">
+                    ✅ Bağlantı kopyalandı!
+                </p>
+            </div>
+        </main>
+
+        <footer style="text-align: center; margin-top: 30px; color: var(--color-text-muted); font-size: 0.85rem;">
+            <p>🎄 Mutlu Yıllar 2025 🎄</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

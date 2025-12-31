@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Size özel bir yeni yıl kutlama mesajı var!">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Size Özel Bir Yeni Yıl Mesajı! 🎉">
+    <meta property="og:description" content="Birisi size özel bir yeni yıl kutlama kartı gönderdi. Açıp okuyun!">
+    <meta property="og:type" content="website">
+
+    <title>🎉 Size Özel Bir Mesaj Var!</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
+</head>
+
+<body class="viewer-mode">
+    <!-- Tema Değiştirici -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
+        <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+        <span class="theme-toggle-label" id="themeLabel">Koyu Tema</span>
+    </button>
+
+    <!-- Arka Plan Dekorasyonları -->
+    <div class="bg-decorations">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
+    </div>
+
+    <!-- Parıltı Konteyneri -->
+    <div id="sparkleContainer"></div>
+
+    <!-- Kar Tanesi Konteyneri -->
+    <div id="snowContainer"></div>
+
+    <!-- Konfeti Konteyneri -->
+    <div id="confettiContainer"></div>
+
+    <!-- Yeni Yıl Geçiş Animasyonu - Modern Tasarım -->
+    <div class="new-year-overlay" id="newYearOverlay">
+        <!-- Gradient arka plan -->
+        <div class="ny-bg-gradient"></div>
+        <div class="ny-aurora"></div>
+
+        <!-- Canvas parçacık sistemi -->
+        <canvas id="particleCanvas"></canvas>
+
+        <!-- Ana içerik -->
+        <div class="ny-main-content">
+            <!-- Geri sayım çemberi -->
+            <div class="ny-countdown-circle" id="countdownCircle">
+                <svg viewBox="0 0 200 200">
+                    <circle class="ny-circle-bg" cx="100" cy="100" r="90" />
+                    <circle class="ny-circle-progress" cx="100" cy="100" r="90" id="progressCircle" />
+                </svg>
+                <div class="ny-countdown-number" id="countdownNumber">3</div>
+            </div>
+
+            <!-- Yıl geçişi -->
+            <div class="ny-year-container hidden" id="yearContainer">
+                <div class="ny-year-row">
+                    <span class="ny-year-char">2</span>
+                    <span class="ny-year-char">0</span>
+                    <span class="ny-year-char">2</span>
+                    <div class="ny-flip-container" id="flipContainer">
+                        <div class="ny-flipper">
+                            <div class="ny-front">5</div>
+                            <div class="ny-back">6</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kutlama metni -->
+            <div class="ny-celebration-message hidden" id="celebrationMessage">
+                <div class="ny-message-glow"></div>
+                <h1 class="ny-main-title" id="mainTitle">
+                    <span class="ny-letter">M</span>
+                    <span class="ny-letter">u</span>
+                    <span class="ny-letter">t</span>
+                    <span class="ny-letter">l</span>
+                    <span class="ny-letter">u</span>
+                    <span class="ny-space"></span>
+                    <span class="ny-letter">Y</span>
+                    <span class="ny-letter">ı</span>
+                    <span class="ny-letter">l</span>
+                    <span class="ny-letter">l</span>
+                    <span class="ny-letter">a</span>
+                    <span class="ny-letter">r</span>
+                    <span class="ny-letter">!</span>
+                </h1>
+                <p class="ny-sub-message">Yeni yıl mesajınız yükleniyor 🎊</p>
+                <div class="ny-emoji-parade">
+                    <span>🎆</span>
+                    <span>🎇</span>
+                    <span>✨</span>
+                    <span>🌟</span>
+                    <span>🎉</span>
+                    <span>🎊</span>
+                    <span>💫</span>
+                    <span>⭐</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Kilitli Mesaj Sayacı -->
+    <div class="container viewer-container hidden" id="lockedContainer">
+        <main class="card locked-card" id="lockedCard">
+            <div class="lock-icon-wrapper">
+                <span class="lock-icon">🔒</span>
+            </div>
+            <h2 class="locked-title">Mesajınız Kilitli</h2>
+            <p class="locked-subtitle">Bu özel mesaj yeni yıl gece yarısında açılacak!</p>
+
+            <div class="countdown-wrapper">
+                <h3 class="countdown-heading">2026'ya Kalan Süre</h3>
+                <div class="countdown-timer" id="countdownTimer">
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="countdownDays">00</span>
+                        <span class="countdown-label">GÜN</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="countdownHours">00</span>
+                        <span class="countdown-label">SAAT</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="countdownMinutes">00</span>
+                        <span class="countdown-label">DAKİKA</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="countdownSeconds">00</span>
+                        <span class="countdown-label">SANİYE</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="locked-year">2026</div>
+
+            <p class="locked-hint">Mesajı gönderen: <strong id="lockedSender">...</strong></p>
+            <p class="locked-recipient-hint">Kime: <strong id="lockedRecipient">...</strong></p>
+        </main>
+    </div>
+
+    <!-- Kart Konteyneri -->
+    <div class="container viewer-container" id="cardContainer">
+        <main class="card viewer-card" id="viewerCard">
+            <header class="card-header">
+                <span class="greeting-pre">Sevgili</span>
+                <h1 id="viewRecipient" class="recipient-title">...</h1>
+            </header>
+
+            <div class="card-body">
+                <p id="viewMessage" class="message-content">Mesajınız yükleniyor...</p>
+            </div>
+
+            <footer class="card-footer">
+                <span class="sevgilerle">Sevgilerle,</span>
+                <h2 id="viewSender" class="sender-name">...</h2>
+            </footer>
+
+            <!-- Dinamik Emoji Dekorasyonu -->
+            <div class="card-emoji-decoration" id="emojiDecoration">
+                🎄 ✨ 🎁 ✨ 🎄
+            </div>
+        </main>
+
+        <!-- Hata Mesajı -->
+        <div id="errorMessage" class="card hidden">
+            <h2>😔 Üzgünüz!</h2>
+            <p>Bu kutlama mesajı bulunamadı veya bağlantı hatalı.</p>
+            <p style="margin-bottom: 20px; font-size: 0.9rem; color: var(--color-text-muted);">
+                Belki de linki yanlış kopyaladınız veya süre doldu.
+            </p>
+            <a href="index.html" class="btn btn-primary" style="display: inline-block; width: auto;">
+                🎄 Kendi Kartını Oluştur
+            </a>
+        </div>
+
+        <footer style="text-align: center; margin-top: 30px;">
+            <a href="index.html" class="btn btn-secondary" style="font-size: 0.9rem;">
+                🎄 Sen de bir mesaj oluştur
+            </a>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
