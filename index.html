@@ -32,10 +32,36 @@
 </head>
 
 <body class="creator-mode">
+    <!-- Dil Seçici -->
+    <div class="lang-selector">
+        <select id="langSelect" onchange="changeLanguage(this.value)" aria-label="Dil seçin">
+            <option value="tr">🇹🇷 Türkçe</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="zh">🇨🇳 中文</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="bn">🇧🇩 বাংলা</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="id">🇮🇩 Bahasa Indonesia</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="vi">🇻🇳 Tiếng Việt</option>
+            <option value="pl">🇵🇱 Polski</option>
+            <option value="nl">🇳🇱 Nederlands</option>
+            <option value="th">🇹🇭 ไทย</option>
+            <option value="fa">🇮🇷 فارسی</option>
+        </select>
+    </div>
+
     <!-- Tema Değiştirici -->
     <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
         <span class="theme-toggle-icon" id="themeIcon">🌙</span>
-        <span class="theme-toggle-label" id="themeLabel">Koyu Tema</span>
+        <span class="theme-toggle-label" id="themeLabel" data-i18n="themeDark">Koyu Tema</span>
     </button>
 
     <!-- Arka Plan Dekorasyonları -->
@@ -54,58 +80,59 @@
     <!-- Ana İçerik -->
     <div class="container">
         <header class="main-header">
-            <h1 class="main-title">Yeni Yıl Dileklerini Paylaş</h1>
-            <p class="subtitle">Sevdiklerinize özel tasarlanmış, kalıcı bir dijital kutlama kartı oluşturun.</p>
+            <h1 class="main-title" data-i18n="title">Yeni Yıl Dileklerini Paylaş</h1>
+            <p class="subtitle" data-i18n="subtitle">Sevdiklerinize özel tasarlanmış, kalıcı bir dijital kutlama kartı
+                oluşturun.</p>
         </header>
 
         <main class="card creator-card">
             <form id="messageForm" novalidate>
                 <div class="form-group">
-                    <label for="recipientName">Kime Gidiyor? 💝</label>
-                    <input type="text" id="recipientName" name="recipientName"
+                    <label for="recipientName" data-i18n="recipientLabel">Kime Gidiyor? 💝</label>
+                    <input type="text" id="recipientName" name="recipientName" data-i18n="recipientPlaceholder"
                         placeholder="Örn: Ayşe, Canım Annem, Sevgili Dostum..." required autocomplete="off"
                         maxlength="50">
                 </div>
 
                 <div class="form-group">
-                    <label for="messageBody">Mesajınız 💌</label>
-                    <textarea id="messageBody" name="messageBody" rows="5"
+                    <label for="messageBody" data-i18n="messageLabel">Mesajınız 💌</label>
+                    <textarea id="messageBody" name="messageBody" rows="5" data-i18n="messagePlaceholder"
                         placeholder="En içten yeni yıl dileklerinizi buraya yazın...
 
 Örnek: 2025 yılında tüm hayallerin gerçek olsun! Sağlık, mutluluk ve başarı dolu bir yıl geçirmeni diliyorum. Seni çok seviyorum! 🎉" required maxlength="500"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="senderName">Kimden? 🎁</label>
-                    <input type="text" id="senderName" name="senderName" placeholder="Sizin adınız" required
-                        autocomplete="off" maxlength="50">
+                    <label for="senderName" data-i18n="senderLabel">Kimden? 🎁</label>
+                    <input type="text" id="senderName" name="senderName" data-i18n="senderPlaceholder"
+                        placeholder="Sizin adınız" required autocomplete="off" maxlength="50">
                 </div>
 
                 <!-- Kişiselleştirme Seçenekleri -->
                 <div class="customization-section">
-                    <label class="section-label">🎨 Kart Stilini Seçin</label>
+                    <label class="section-label" data-i18n="styleLabel">🎨 Kart Stilini Seçin</label>
                     <div class="style-options" id="styleOptions">
                         <button type="button" class="style-btn active" data-style="gold" title="Altın">
                             <span class="style-preview gold-style"></span>
-                            <span class="style-name">Altın</span>
+                            <span class="style-name" data-i18n="styles.gold">Altın</span>
                         </button>
                         <button type="button" class="style-btn" data-style="rose" title="Gül">
                             <span class="style-preview rose-style"></span>
-                            <span class="style-name">Gül</span>
+                            <span class="style-name" data-i18n="styles.rose">Gül</span>
                         </button>
                         <button type="button" class="style-btn" data-style="emerald" title="Zümrüt">
                             <span class="style-preview emerald-style"></span>
-                            <span class="style-name">Zümrüt</span>
+                            <span class="style-name" data-i18n="styles.emerald">Zümrüt</span>
                         </button>
                         <button type="button" class="style-btn" data-style="purple" title="Mor">
                             <span class="style-preview purple-style"></span>
-                            <span class="style-name">Mor</span>
+                            <span class="style-name" data-i18n="styles.purple">Mor</span>
                         </button>
                     </div>
                 </div>
 
                 <div class="customization-section">
-                    <label class="section-label">✨ Dekorasyon Emojisi</label>
+                    <label class="section-label" data-i18n="emojiLabel">✨ Dekorasyon Emojisi</label>
                     <div class="emoji-options" id="emojiOptions">
                         <button type="button" class="emoji-btn active" data-emoji="🎄" title="Çam Ağacı">🎄</button>
                         <button type="button" class="emoji-btn" data-emoji="🎁" title="Hediye">🎁</button>
@@ -120,7 +147,7 @@
 
                 <!-- Kar Yoğunluğu Ayarı -->
                 <div class="customization-section snow-section">
-                    <label class="section-label">❄️ Kar Yoğunluğu</label>
+                    <label class="section-label" data-i18n="snowLabel">❄️ Kar Yoğunluğu</label>
                     <div class="snow-slider-container">
                         <div class="snow-slider-wrapper">
                             <input type="range" id="snowIntensity" name="snowIntensity" min="0" max="100" value="50"
@@ -140,46 +167,49 @@
                         <span>Yoğun</span>
                         <span>Tipi!</span>
                     </div>
-                    <p class="snow-hint">Mesajı görüntüleyenin ekranında yağacak kar miktarını ayarlayın</p>
+                    <p class="snow-hint" data-i18n="snowHint">Mesajı görüntüleyenin ekranında yağacak kar miktarını
+                        ayarlayın</p>
                 </div>
 
 
                 <!-- Kilitleme Seçeneği -->
                 <div class="customization-section lock-section">
-                    <label class="section-label">🔒 Mesajı Kilitle</label>
+                    <label class="section-label" data-i18n="lockLabel">🔒 Mesajı Kilitle</label>
                     <div class="lock-option">
                         <label class="toggle-switch">
                             <input type="checkbox" id="lockMessage" name="lockMessage">
                             <span class="toggle-slider"></span>
                         </label>
-                        <span class="lock-description">Mesaj yeni yıl gece yarısı (00:00) açılsın</span>
+                        <span class="lock-description" data-i18n="lockDesc">Mesaj yeni yıl gece yarısı (00:00)
+                            açılsın</span>
                     </div>
-                    <p class="lock-hint">Bu özellik aktifken, alıcı mesajı sadece 1 Ocak 00:00'dan sonra görebilir.</p>
+                    <p class="lock-hint" data-i18n="lockHint">Bu özellik aktifken, alıcı mesajı sadece 1 Ocak 00:00'dan
+                        sonra görebilir.</p>
                 </div>
 
-                <button type="submit" class="btn btn-primary" id="createBtn">
+                <button type="submit" class="btn btn-primary" id="createBtn" data-i18n="createBtn">
                     Kutlama Kartını Oluştur ✨
                 </button>
             </form>
 
             <!-- Sonuç Alanı -->
             <div id="resultArea" class="hidden">
-                <h3>🎉 Kartınız Hazır!</h3>
-                <p>Aşağıdaki bağlantıyı kopyalayıp sevdiklerinize gönderin.</p>
+                <h3 data-i18n="resultTitle">🎉 Kartınız Hazır!</h3>
+                <p data-i18n="resultDesc">Aşağıdaki bağlantıyı kopyalayıp sevdiklerinize gönderin.</p>
                 <div class="link-box">
                     <input type="text" id="shareLink" readonly aria-label="Paylaşım linki">
-                    <button id="copyBtn" class="btn btn-secondary">
+                    <button id="copyBtn" class="btn btn-secondary" data-i18n="copyBtn">
                         📋 Kopyala
                     </button>
                 </div>
-                <p class="copied-text hidden" id="copiedMsg">
+                <p class="copied-text hidden" id="copiedMsg" data-i18n="copiedBtn">
                     ✅ Bağlantı kopyalandı!
                 </p>
             </div>
         </main>
 
         <footer style="text-align: center; margin-top: 30px; color: var(--color-text-muted); font-size: 0.85rem;">
-            <p>🎄 Mutlu Yıllar 2025 🎄</p>
+            <p data-i18n="footer">🎄 Mutlu Yıllar 2025 🎄</p>
         </footer>
     </div>
 

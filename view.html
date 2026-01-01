@@ -128,35 +128,37 @@
             <div class="lock-icon-wrapper">
                 <span class="lock-icon">🔒</span>
             </div>
-            <h2 class="locked-title">Mesajınız Kilitli</h2>
-            <p class="locked-subtitle">Bu özel mesaj yeni yıl gece yarısında açılacak!</p>
+            <h2 class="locked-title" data-i18n="lockedTitle">Mesajınız Kilitli</h2>
+            <p class="locked-subtitle" data-i18n="lockedSubtitle">Bu özel mesaj yeni yıl gece yarısında açılacak!</p>
 
             <div class="countdown-wrapper">
-                <h3 class="countdown-heading">2026'ya Kalan Süre</h3>
+                <h3 class="countdown-heading" data-i18n="timeLeft">2026'ya Kalan Süre</h3>
                 <div class="countdown-timer" id="countdownTimer">
                     <div class="countdown-item">
                         <span class="countdown-value" id="countdownDays">00</span>
-                        <span class="countdown-label">GÜN</span>
+                        <span class="countdown-label" data-i18n="days">GÜN</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-value" id="countdownHours">00</span>
-                        <span class="countdown-label">SAAT</span>
+                        <span class="countdown-label" data-i18n="hours">SAAT</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-value" id="countdownMinutes">00</span>
-                        <span class="countdown-label">DAKİKA</span>
+                        <span class="countdown-label" data-i18n="minutes">DAKİKA</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-value" id="countdownSeconds">00</span>
-                        <span class="countdown-label">SANİYE</span>
+                        <span class="countdown-label" data-i18n="seconds">SANİYE</span>
                     </div>
                 </div>
             </div>
 
             <div class="locked-year">2026</div>
 
-            <p class="locked-hint">Mesajı gönderen: <strong id="lockedSender">...</strong></p>
-            <p class="locked-recipient-hint">Kime: <strong id="lockedRecipient">...</strong></p>
+            <p class="locked-hint"><span data-i18n="senderHint">Mesajı gönderen:</span> <strong
+                    id="lockedSender">...</strong></p>
+            <p class="locked-recipient-hint"><span data-i18n="recipientHint">Kime:</span> <strong
+                    id="lockedRecipient">...</strong></p>
         </main>
     </div>
 
@@ -164,7 +166,7 @@
     <div class="container viewer-container" id="cardContainer">
         <main class="card viewer-card" id="viewerCard">
             <header class="card-header">
-                <span class="greeting-pre">Sevgili</span>
+                <span class="greeting-pre" data-i18n="greetingPre">Sevgili</span>
                 <h1 id="viewRecipient" class="recipient-title">...</h1>
             </header>
 
@@ -173,7 +175,7 @@
             </div>
 
             <footer class="card-footer">
-                <span class="sevgilerle">Sevgilerle,</span>
+                <span class="sevgilerle" data-i18n="withLove">Sevgilerle,</span>
                 <h2 id="viewSender" class="sender-name">...</h2>
             </footer>
 
@@ -185,18 +187,19 @@
 
         <!-- Hata Mesajı -->
         <div id="errorMessage" class="card hidden">
-            <h2>😔 Üzgünüz!</h2>
-            <p>Bu kutlama mesajı bulunamadı veya bağlantı hatalı.</p>
-            <p style="margin-bottom: 20px; font-size: 0.9rem; color: var(--color-text-muted);">
+            <h2 data-i18n="errorTitle">😔 Üzgünüz!</h2>
+            <p data-i18n="errorDesc">Bu kutlama mesajı bulunamadı veya bağlantı hatalı.</p>
+            <p style="margin-bottom: 20px; font-size: 0.9rem; color: var(--color-text-muted);" data-i18n="errorHint">
                 Belki de linki yanlış kopyaladınız veya süre doldu.
             </p>
-            <a href="index.html" class="btn btn-primary" style="display: inline-block; width: auto;">
+            <a href="index.html" class="btn btn-primary" style="display: inline-block; width: auto;"
+                data-i18n="createOwnBtn">
                 🎄 Kendi Kartını Oluştur
             </a>
         </div>
 
         <footer style="text-align: center; margin-top: 30px;">
-            <a href="index.html" class="btn btn-secondary" style="font-size: 0.9rem;">
+            <a href="index.html" class="btn btn-secondary" style="font-size: 0.9rem;" data-i18n="viewerFooterBtn">
                 🎄 Sen de bir mesaj oluştur
             </a>
         </footer>
