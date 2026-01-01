@@ -69,7 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
             copyFail: "Kopyalama başarısız oldu. Lütfen linki manuel olarak kopyalayın.",
             celebrationText: "M u t l u  Y ı l l a r !",
             styles: { gold: "Altın", rose: "Gül", emerald: "Zümrüt", purple: "Mor" },
-            emojis: { tree: "Çam Ağacı", gift: "Hediye", star: "Yıldız", snowflake: "Kar Tanesi", confetti: "Konfeti", sparkle: "Parıltı", star2: "Parlak Yıldız", heart: "Kalp" }
+            emojis: { tree: "Çam Ağacı", gift: "Hediye", star: "Yıldız", snowflake: "Kar Tanesi", confetti: "Konfeti", sparkle: "Parıltı", star2: "Parlak Yıldız", heart: "Kalp" },
+            nyLoading: "Yeni yıl mesajınız yükleniyor 🎊",
+            pageTitleWithRecipient: "🎉 {recipient} için bir mesaj var!",
+            metaDescWithSender: "{sender} size özel bir yeni yıl mesajı gönderdi!",
         },
         en: {
             title: "Share New Year Wishes",
@@ -123,7 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
             copyFail: "Copy failed. Please copy the link manually.",
             celebrationText: "H a p p y  N e w  Y e a r !",
             styles: { gold: "Gold", rose: "Rose", emerald: "Emerald", purple: "Purple" },
-            emojis: { tree: "Tree", gift: "Gift", star: "Star", snowflake: "Snowflake", confetti: "Confetti", sparkle: "Sparkle", star2: "Bright Star", heart: "Heart" }
+            emojis: { tree: "Tree", gift: "Gift", star: "Star", snowflake: "Snowflake", confetti: "Confetti", sparkle: "Sparkle", star2: "Bright Star", heart: "Heart" },
+            nyLoading: "Loading your new year message 🎊",
+            pageTitleWithRecipient: "🎉 Message for {recipient}!",
+            metaDescWithSender: "{sender} sent you a special new year message!",
         },
         es: {
             title: "Comparte Deseos de Año Nuevo",
@@ -177,7 +183,10 @@ document.addEventListener('DOMContentLoaded', () => {
             copyFail: "Error al copiar. Por favor copia el enlace manualmente.",
             celebrationText: "¡ F e l i z  A ñ o  N u e v o !",
             styles: { gold: "Oro", rose: "Rosa", emerald: "Esmeralda", purple: "Púrpura" },
-            emojis: { tree: "Árbol", gift: "Regalo", star: "Estrella", snowflake: "Copo de Nieve", confetti: "Confeti", sparkle: "Brillo", star2: "Estrella Brillante", heart: "Corazón" }
+            emojis: { tree: "Árbol", gift: "Regalo", star: "Estrella", snowflake: "Copo de Nieve", confetti: "Confeti", sparkle: "Brillo", star2: "Estrella Brillante", heart: "Corazón" },
+            nyLoading: "Cargando su mensaje de año nuevo 🎊",
+            pageTitleWithRecipient: "🎉 ¡Mensaje para {recipient}!",
+            metaDescWithSender: "¡{sender} le envió un mensaje especial de año nuevo!",
         },
         zh: {
             title: "分享新年祝福",
@@ -231,7 +240,10 @@ document.addEventListener('DOMContentLoaded', () => {
             copyFail: "复制失败。请手动复制链接。",
             celebrationText: "新 年 快 乐 ！",
             styles: { gold: "金色", rose: "玫瑰", emerald: "祖母绿", purple: "紫色" },
-            emojis: { tree: "树", gift: "礼物", star: "星星", snowflake: "雪花", confetti: "五彩纸屑", sparkle: "闪耀", star2: "亮星", heart: "心" }
+            emojis: { tree: "树", gift: "礼物", star: "星星", snowflake: "雪花", confetti: "五彩纸屑", sparkle: "闪耀", star2: "亮星", heart: "心" },
+            nyLoading: "正在加载您的新年留言 🎊",
+            pageTitleWithRecipient: "🎉 给 {recipient} 的留言！",
+            metaDescWithSender: "{sender} 给您发送了一条特别的新年留言！",
         },
         // Diğer diller için otomatik çeviri placeholder (yer tasarrufu için kısa tutuldu, gerçekte 20 dil olacak)
         // ... (Diğer diller buraya eklenebilir, şimdilik en popülerleri ekledim, diğerlerini dinamik doldurabiliriz veya sonradan ekleriz)
@@ -314,7 +326,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Title update
         const pageTitleKey = document.body.classList.contains('creator-mode') ? 'pageTitleCreator' : 'pageTitleViewer';
-        document.title = t[pageTitleKey];
+        let newTitle = t[pageTitleKey] || translations['en'][pageTitleKey];
+
+        // Dynamic Title Handling for Viewer Mode
+        if (document.body.classList.contains('viewer-mode')) {
+            const recipientEl = document.getElementById('viewRecipient');
+            const lockedRecipientEl = document.getElementById('lockedRecipient');
+            const lockedContainer = document.getElementById('lockedContainer');
+
+            // Check if card is showing (recipient is loaded)
+            if (recipientEl && recipientEl.textContent && recipientEl.textContent !== '...' && (!lockedContainer || lockedContainer.classList.contains('hidden'))) {
+                newTitle = (t['pageTitleWithRecipient'] || translations['en']['pageTitleWithRecipient']).replace('{recipient}', recipientEl.textContent);
+            } else if (lockedRecipientEl && lockedRecipientEl.textContent && lockedRecipientEl.textContent !== '...' && lockedContainer && !lockedContainer.classList.contains('hidden')) {
+                newTitle = `🔒 ${t['pageTitleLocked'] || translations['en']['pageTitleLocked']} - ${lockedRecipientEl.textContent}`;
+            }
+        }
+        document.title = newTitle;
 
         // Meta desc update (Basitçe)
         const metaDescKey = document.body.classList.contains('creator-mode') ? 'metaDescCreator' : 'metaDescViewer';
@@ -348,14 +375,15 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTheme(savedTheme);
 
     function applyTheme(theme) {
+        const currentLangObj = translations[localStorage.getItem('lang') || 'en'] || translations['en'];
         if (theme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             themeIcon.textContent = '☀️';
-            if (themeLabel) themeLabel.textContent = 'Açık Tema';
+            if (themeLabel) themeLabel.textContent = currentLangObj.themeLight;
         } else {
             document.documentElement.removeAttribute('data-theme');
             themeIcon.textContent = '🌙';
-            if (themeLabel) themeLabel.textContent = 'Koyu Tema';
+            if (themeLabel) themeLabel.textContent = currentLangObj.themeDark;
         }
         localStorage.setItem('theme', theme);
     }
@@ -685,7 +713,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // view.html için URL oluştur
             const baseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
-            const finalLink = `${baseUrl}view.html?d=${encodedData}`;
+            const finalLink = `${baseUrl}view.html?d=${encodeURIComponent(encodedData)}`;
 
             // Sonucu göster
             shareLinkInput.value = finalLink;
@@ -885,12 +913,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Sayfa başlığını güncelle
-            document.title = `🎉 ${recipient} için bir mesaj var!`;
+            document.title = t('pageTitleWithRecipient').replace('{recipient}', recipient);
 
             // Meta description güncelle
             const metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) {
-                metaDesc.setAttribute('content', `${sender} size özel bir yeni yıl mesajı gönderdi!`);
+                metaDesc.setAttribute('content', t('metaDescWithSender').replace('{sender}', sender));
             }
 
             // Giriş animasyonunu tetikle

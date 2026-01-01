@@ -33,7 +33,7 @@
     <!-- Tema Değiştirici -->
     <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir">
         <span class="theme-toggle-icon" id="themeIcon">🌙</span>
-        <span class="theme-toggle-label" id="themeLabel">Koyu Tema</span>
+        <span class="theme-toggle-label" id="themeLabel">Dark Theme</span>
     </button>
 
     <!-- Arka Plan Dekorasyonları -->
@@ -91,7 +91,7 @@
             <div class="ny-celebration-message hidden" id="celebrationMessage">
                 <div class="ny-message-glow"></div>
                 <h1 class="ny-main-title" id="mainTitle"></h1>
-                <p class="ny-sub-message">Yeni yıl mesajınız yükleniyor 🎊</p>
+                <p class="ny-sub-message" data-i18n="nyLoading">Loading your new year message 🎊</p>
                 <div class="ny-emoji-parade">
                     <span>🎆</span>
                     <span>🎇</span>
@@ -114,36 +114,36 @@
             <div class="lock-icon-wrapper">
                 <span class="lock-icon">🔒</span>
             </div>
-            <h2 class="locked-title" data-i18n="lockedTitle">Mesajınız Kilitli</h2>
-            <p class="locked-subtitle" data-i18n="lockedSubtitle">Bu özel mesaj yeni yıl gece yarısında açılacak!</p>
+            <h2 class="locked-title" data-i18n="lockedTitle">Message Locked</h2>
+            <p class="locked-subtitle" data-i18n="lockedSubtitle">This special message will open at New Year's midnight!
+            </p>
 
             <div class="countdown-wrapper">
-                <h3 class="countdown-heading" data-i18n="timeLeft">2026'ya Kalan Süre</h3>
+                <h3 class="countdown-heading" data-i18n="timeLeft">Time Left Until 2026</h3>
                 <div class="countdown-timer" id="countdownTimer">
                     <div class="countdown-item">
                         <span class="countdown-value" id="countdownDays">00</span>
-                        <span class="countdown-label" data-i18n="days">GÜN</span>
+                        <span class="countdown-label" data-i18n="days">DAYS</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-value" id="countdownHours">00</span>
-                        <span class="countdown-label" data-i18n="hours">SAAT</span>
+                        <span class="countdown-label" data-i18n="hours">HOURS</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-value" id="countdownMinutes">00</span>
-                        <span class="countdown-label" data-i18n="minutes">DAKİKA</span>
+                        <span class="countdown-label" data-i18n="minutes">MINUTES</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-value" id="countdownSeconds">00</span>
-                        <span class="countdown-label" data-i18n="seconds">SANİYE</span>
+                        <span class="countdown-label" data-i18n="seconds">SECONDS</span>
                     </div>
                 </div>
             </div>
 
             <div class="locked-year">2026</div>
 
-            <p class="locked-hint"><span data-i18n="senderHint">Mesajı gönderen:</span> <strong
-                    id="lockedSender">...</strong></p>
-            <p class="locked-recipient-hint"><span data-i18n="recipientHint">Kime:</span> <strong
+            <p class="locked-hint"><span data-i18n="senderHint">From:</span> <strong id="lockedSender">...</strong></p>
+            <p class="locked-recipient-hint"><span data-i18n="recipientHint">To:</span> <strong
                     id="lockedRecipient">...</strong></p>
         </main>
     </div>
@@ -152,16 +152,16 @@
     <div class="container viewer-container" id="cardContainer">
         <main class="card viewer-card" id="viewerCard">
             <header class="card-header">
-                <span class="greeting-pre" data-i18n="greetingPre">Sevgili</span>
+                <span class="greeting-pre" data-i18n="greetingPre">Dear</span>
                 <h1 id="viewRecipient" class="recipient-title">...</h1>
             </header>
 
             <div class="card-body">
-                <p id="viewMessage" class="message-content" data-i18n="loading">Mesajınız yükleniyor...</p>
+                <p id="viewMessage" class="message-content">Loading your message...</p>
             </div>
 
             <footer class="card-footer">
-                <span class="sevgilerle" data-i18n="withLove">Sevgilerle,</span>
+                <span class="sevgilerle" data-i18n="withLove">With Love,</span>
                 <h2 id="viewSender" class="sender-name">...</h2>
             </footer>
 
@@ -173,20 +173,20 @@
 
         <!-- Hata Mesajı -->
         <div id="errorMessage" class="card hidden">
-            <h2 data-i18n="errorTitle">😔 Üzgünüz!</h2>
-            <p data-i18n="errorDesc">Bu kutlama mesajı bulunamadı veya bağlantı hatalı.</p>
+            <h2 data-i18n="errorTitle">😔 Sorry!</h2>
+            <p data-i18n="errorDesc">This celebration message was not found or the link is invalid.</p>
             <p style="margin-bottom: 20px; font-size: 0.9rem; color: var(--color-text-muted);" data-i18n="errorHint">
-                Belki de linki yanlış kopyaladınız veya süre doldu.
+                Maybe you copied the link wrong or it has expired.
             </p>
             <a href="index.html" class="btn btn-primary" style="display: inline-block; width: auto;"
                 data-i18n="createOwnBtn">
-                🎄 Kendi Kartını Oluştur
+                🎄 Create Your Own Card
             </a>
         </div>
 
         <footer style="text-align: center; margin-top: 30px;">
             <a href="index.html" class="btn btn-secondary" style="font-size: 0.9rem;" data-i18n="viewerFooterBtn">
-                🎄 Sen de bir mesaj oluştur
+                🎄 Create a message too
             </a>
         </footer>
     </div>
