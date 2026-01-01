@@ -1,67 +1,70 @@
-# 🎄 Yeni Yıl Kutlama Kartı
+# 🎄 New Year Celebration Card
 
-Sevdiklerinize özel tasarlanmış, kişiselleştirilebilir yeni yıl kutlama kartları oluşturun ve paylaşın!
+Create and share custom designed, personalized New Year celebration cards for your loved ones!
 
-## 🌟 Özellikler
+## 🌟 Features
 
-- ✨ **Kişiselleştirilmiş Kartlar**: İsim, mesaj ve gönderen bilgileriyle özel kartlar
-- 🎨 **Premium Tasarım**: Glassmorphism efekti, altın tonları ve zarif tipografi
-- 🌙 **Tema Değiştirici**: Koyu ve açık tema seçenekleri
-- ❄️ **Animasyonlar**: Kar tanesi, parıltı ve konfeti efektleri
-- 📱 **Responsive**: Tüm cihazlarda mükemmel görünüm
-- 🔒 **Güvenli**: XSS koruması ile güvenli veri işleme
+- ✨ **Personalized Cards**: Custom cards with recipient name, message, and sender info
+- 🎨 **Premium Design**: Glassmorphism effect, gold tones, and elegant typography
+- 🌐 **Multi-language Support**: Support for 20+ languages including English, Turkish, Spanish, Chinese, and more
+- 🌙 **Theme Switcher**: Dark and light theme options
+- ❄️ **Animations**: Snowflake, sparkle, and confetti effects
+- 📱 **Responsive**: Perfect look on all devices
+- 🔒 **Secure**: Safe data handling with XSS protection
 
-## 🚀 Nasıl Kullanılır
+## 🚀 How to Use
 
-### Kart Oluşturma (Gönderen)
-1. `index.html` sayfasını açın
-2. Formu doldurun:
-   - **Kime**: Alıcının adı
-   - **Mesaj**: Yeni yıl dilekleriniz
-   - **Kimden**: Sizin adınız
-3. "Kutlama Kartını Oluştur" butonuna tıklayın
-4. Oluşturulan linki kopyalayın ve sevdiklerinize gönderin
+### Creating a Card (Sender)
+1. Open the `index.html` page
+2. Fill out the form:
+   - **To Whom**: Recipient's name
+   - **Message**: Your New Year wishes
+   - **From Whom**: Your name
+3. Customize your card:
+   - Choose a card style (Gold, Rose, Emerald, Purple)
+   - Select decoration emojis
+   - Adjust snow intensity
+   - (Optional) Lock the message until New Year's Eve
+4. Click "Create Celebration Card"
+5. Copy the generated link and send it to your loved ones
 
-### Kartı Görüntüleme (Alıcı)
-1. Paylaşılan linke tıklayın
-2. Özel tasarlanmış kartınızı konfeti eşliğinde görün! 🎉
+### Viewing a Card (Recipient)
+1. Click on the shared link
+2. See your custom designed card with confetti! 🎉
 
-## 📁 Dosya Yapısı
+## 📁 File Structure
 
 ```
 happy_new_year/
-├── index.html          # Kart oluşturma sayfası
-├── view.html           # Kart görüntüleme sayfası
-├── style.css           # Tüm stiller
-├── script.js           # JavaScript mantığı
+├── index.html          # Card creation page
+├── view.html           # Card viewing page
+├── style.css           # All styles
+├── script.js           # JavaScript logic
 ├── assets/
-│   └── images/
-│       ├── tree_left.png   # Sol dekorasyon
-│       └── tree_right.png  # Sağ dekorasyon
-└── README.md           # Bu dosya
+│   └── images/         # (Optional images)
+└── README.md           # This file
 ```
 
-## 🌐 GitHub Pages'de Yayınlama
+## 🌐 Publishing on GitHub Pages
 
-1. Bu repoyu GitHub'a yükleyin
-2. **Settings** > **Pages** sekmesine gidin
-3. **Source** olarak `main` branch'ini seçin
-4. Birkaç dakika içinde siteniz yayında!
+1. Upload this repo to GitHub
+2. Go to **Settings** > **Pages** tab
+3. Select `main` branch as **Source**
+4. Your site will be live in a few minutes!
 
-Örnek URL: `https://kullaniciadi.github.io/happy_new_year/`
+Example URL: `https://username.github.io/happy_new_year/`
 
-## 🎨 Teknik Detaylar
+## 🎨 Technical Details
 
 - **Fonts**: Playfair Display, Inter (Google Fonts)
 - **CSS**: Custom Properties, Flexbox, Glassmorphism
 - **JavaScript**: Vanilla JS, URLSearchParams API
-- **Animasyonlar**: CSS Keyframes, JavaScript DOM manipulation
+- **Animations**: CSS Keyframes, JavaScript DOM manipulation
 
-## 📜 Lisans
+## 📜 License
 
-Bu proje serbestçe kullanılabilir. Mutlu yıllar! 🎄
+This project is free to use. Happy New Year! 🎄
 
 ---
 
 Made with ❤️ for New Year 2025
-" " 

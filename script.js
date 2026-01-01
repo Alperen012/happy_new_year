@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     // 0. ÇOKLU DİL DESTEĞİ (MULTI-LANGUAGE SUPPORT)
     // ============================================
-    const currentLang = localStorage.getItem('lang') || 'tr';
+    const currentLang = localStorage.getItem('lang') || 'en';
 
     const translations = {
         tr: {
