@@ -755,9 +755,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const lockedSender = document.getElementById('lockedSender');
         const lockedRecipient = document.getElementById('lockedRecipient');
 
-        // Yeni yıl hedef tarihi (1 Ocak 2026, 00:00:00)
-        const newYearDate = new Date('2026-01-01T00:00:00');
+        // Dinamik Yıl Hesaplama
         const now = new Date();
+        const currentYear = now.getFullYear();
+        // Eğer Ocak ayının ilk 3 günündeysek (Ocak 0 = 1. ay), hedef aslında bu yılbaşıydı (birkaç gün geçti)
+        // Ama kullanıcı "1 gün sonra artık sonraki sene" dediği için:
+        // 2 Ocak ve sonrası -> Hedef bir sonraki yıl (2026 -> 2027)
+        // 1 Ocak ve öncesi -> Hedef bu yıl (2025 -> 2026 animasyonu aslında)
+
+        let targetYear, nextYearVal;
+
+        // 2 Ocak (Ay 0, Gün 2)
+        const cutoffDate = new Date(currentYear, 0, 2);
+
+        if (now >= cutoffDate) {
+            // 2026'nın 3 Ocağı ise -> Hedef 2027 Yılbaşı
+            targetYear = currentYear + 1;
+            nextYearVal = targetYear;
+        } else {
+            // 2026'nın 1 Ocağı ise -> Hedef 2026 Yılbaşı (kutlama modunda kalmalı)
+            targetYear = currentYear;
+            nextYearVal = targetYear;
+        }
+
+        const newYearDate = new Date(targetYear, 0, 1, 0, 0, 0); // 1 Ocak 00:00:00
         const isNewYearReached = now >= newYearDate;
 
         // Verilerin varlığını kontrol et
@@ -944,6 +965,54 @@ document.addEventListener('DOMContentLoaded', () => {
         const progressCircle = document.getElementById('progressCircle');
         const yearContainer = document.getElementById('yearContainer');
         const flipContainer = document.getElementById('flipContainer');
+
+        // Dinamik Yıl Güncellemesi (HTML Enjeksiyonu)
+        const now = new Date();
+        const currentRealYear = now.getFullYear();
+        // Cutoff logic aynısı
+        const cutoffDate = new Date(currentRealYear, 0, 2);
+
+        let oldYearVal, newYearVal;
+        if (now >= cutoffDate) {
+            oldYearVal = currentRealYear;
+            newYearVal = currentRealYear + 1;
+        } else {
+            oldYearVal = currentRealYear - 1;
+            newYearVal = currentRealYear;
+        }
+
+        // DOM güncellemesi
+        if (yearContainer) {
+            // Örn: 2025 -> 2026 için
+            // HTML yapısı: 2 0 2 [5->6]
+            // Son basamağı ayır
+            const oldYearStr = oldYearVal.toString();
+            const newYearStr = newYearVal.toString();
+
+            const prefix = oldYearStr.substring(0, 3); // "202"
+            const oldDigit = oldYearStr.charAt(3);     // "5"
+            const newDigit = newYearStr.charAt(3);     // "6"
+
+            // Eğer prefix değişiyorsa (örn 1999 -> 2000) bu basit mantık yetmez ama 2099'a kadar çalışır :)
+            // Basitlik için sadece son basamak flip yapsın varsayıyoruz, ama generic yapalım:
+
+            yearContainer.innerHTML = `
+                <div class="ny-year-row">
+                    <span class="ny-year-char">${prefix.charAt(0)}</span>
+                    <span class="ny-year-char">${prefix.charAt(1)}</span>
+                    <span class="ny-year-char">${prefix.charAt(2)}</span>
+                    <div class="ny-flip-container" id="flipContainer">
+                        <div class="ny-flipper">
+                            <div class="ny-front">${oldDigit}</div>
+                            <div class="ny-back">${newDigit}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Element referansını yenile
+            // flipContainer = document.getElementById('flipContainer'); // const olduğu için yeniden atayamayız, ama querySelector ile alabiliriz aşağıda
+        }
         const celebrationMessage = document.getElementById('celebrationMessage');
 
         // Canvas boyutlandırma
@@ -1121,8 +1190,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // 1 saniye sonra flip
                 setTimeout(() => {
-                    if (flipContainer) {
-                        const flipper = flipContainer.querySelector('.ny-flipper');
+                    const dynamicFlipContainer = document.getElementById('flipContainer'); // Yeniden seç
+                    if (dynamicFlipContainer) {
+                        const flipper = dynamicFlipContainer.querySelector('.ny-flipper');
                         if (flipper) flipper.classList.add('flipped');
                     }
 

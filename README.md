@@ -45,14 +45,13 @@ happy_new_year/
 └── README.md           # This file
 ```
 
-## 🌐 Publishing on GitHub Pages
+## 🌐 Live Demo
 
-1. Upload this repo to GitHub
-2. Go to **Settings** > **Pages** tab
-3. Select `main` branch as **Source**
-4. Your site will be live in a few minutes!
+You can access the live version of this project here:
 
-Example URL: `https://username.github.io/happy_new_year/`
+👉 **[https://alperen012.github.io/happy_new_year/](https://alperen012.github.io/happy_new_year/)**
+
+Click the link to create your own card or view the demo!
 
 ## 🎨 Technical Details
 
