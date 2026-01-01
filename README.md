@@ -15,10 +15,6 @@ Create and share custom designed, personalized New Year celebration cards for yo
 ## 📸 Screenshots
 
 ![Desktop Preview](assets/images/screenshots/desktop_preview.png)
-*(Please add a screenshot named `desktop_preview.png` to `assets/images/screenshots/`)*
-
-![Mobile Preview](assets/images/screenshots/mobile_preview.png)
-*(Please add a screenshot named `mobile_preview.png` to `assets/images/screenshots/`)*
 
 ## 🚀 How to Use
 

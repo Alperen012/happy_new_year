@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             metaDescViewer: "Birisi size özel bir yeni yıl kutlama kartı gönderdi. Açıp okuyun!",
             validateFields: "Lütfen tüm alanları doldurun.",
             copyFail: "Kopyalama başarısız oldu. Lütfen linki manuel olarak kopyalayın.",
+            celebrationText: "M u t l u  Y ı l l a r !",
             styles: { gold: "Altın", rose: "Gül", emerald: "Zümrüt", purple: "Mor" },
             emojis: { tree: "Çam Ağacı", gift: "Hediye", star: "Yıldız", snowflake: "Kar Tanesi", confetti: "Konfeti", sparkle: "Parıltı", star2: "Parlak Yıldız", heart: "Kalp" }
         },
@@ -120,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             metaDescViewer: "Someone sent you a special new year celebration card. Open to read!",
             validateFields: "Please fill in all fields.",
             copyFail: "Copy failed. Please copy the link manually.",
+            celebrationText: "H a p p y  N e w  Y e a r !",
             styles: { gold: "Gold", rose: "Rose", emerald: "Emerald", purple: "Purple" },
             emojis: { tree: "Tree", gift: "Gift", star: "Star", snowflake: "Snowflake", confetti: "Confetti", sparkle: "Sparkle", star2: "Bright Star", heart: "Heart" }
         },
@@ -173,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             metaDescViewer: "Alguien te envió una tarjeta especial de celebración de año nuevo. ¡Ábrela para leer!",
             validateFields: "Por favor completa todos los campos.",
             copyFail: "Error al copiar. Por favor copia el enlace manualmente.",
+            celebrationText: "¡ F e l i z  A ñ o  N u e v o !",
             styles: { gold: "Oro", rose: "Rosa", emerald: "Esmeralda", purple: "Púrpura" },
             emojis: { tree: "Árbol", gift: "Regalo", star: "Estrella", snowflake: "Copo de Nieve", confetti: "Confeti", sparkle: "Brillo", star2: "Estrella Brillante", heart: "Corazón" }
         },
@@ -226,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
             metaDescViewer: "有人给您发送了一张特别的新年庆祝卡。打开阅读！",
             validateFields: "请填写所有字段。",
             copyFail: "复制失败。请手动复制链接。",
+            celebrationText: "新 年 快 乐 ！",
             styles: { gold: "金色", rose: "玫瑰", emerald: "祖母绿", purple: "紫色" },
             emojis: { tree: "树", gift: "礼物", star: "星星", snowflake: "雪花", confetti: "五彩纸屑", sparkle: "闪耀", star2: "亮星", heart: "心" }
         },
@@ -253,6 +257,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Sadece bir iki metni özelleştirebiliriz "Happy New Year" gibi.
     });
 
+    // Translation Helper
+    function t(key) {
+        const lang = localStorage.getItem('lang') || 'en';
+        return translations[lang][key] || translations['en'][key] || key;
+    }
+
     // Dil değiştirme fonksiyonu
     window.changeLanguage = function (lang) {
         if (!translations[lang]) return;
@@ -275,6 +285,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+
+        // Update Tooltips (Styles and Emojis)
+        document.querySelectorAll('.style-btn').forEach(btn => {
+            const style = btn.getAttribute('data-style');
+            if (style && t.styles && t.styles[style]) {
+                btn.title = t.styles[style];
+                const nameSpan = btn.querySelector('.style-name');
+                if (nameSpan) nameSpan.textContent = t.styles[style];
+            }
+        });
+
+        document.querySelectorAll('.emoji-btn').forEach(btn => {
+            const emojiKey = {
+                '🎄': 'tree', '🎁': 'gift', '⭐': 'star', '❄️': 'snowflake',
+                '🎉': 'confetti', '💫': 'sparkle', '🌟': 'star2', '❤️': 'heart'
+            }[btn.getAttribute('data-emoji')];
+
+            if (emojiKey && t.emojis && t.emojis[emojiKey]) {
+                btn.title = t.emojis[emojiKey];
+            }
+        });
+
+        // Update Celebration Text Animation
+        if (typeof updateCelebrationText === 'function') {
+            updateCelebrationText(lang);
+        }
 
         // Title update
         const pageTitleKey = document.body.classList.contains('creator-mode') ? 'pageTitleCreator' : 'pageTitleViewer';
@@ -613,7 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Butonu devre dışı bırak ve metni değiştir
             createBtn.disabled = true;
             const originalText = createBtn.textContent;
-            createBtn.textContent = '⏳ Oluşturuluyor...';
+            createBtn.textContent = t('creatingBtn');
 
             // Form verilerini al ve temizle
             const recipient = document.getElementById('recipientName').value.trim();
@@ -622,7 +658,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Validasyon
             if (!recipient || !message || !sender) {
-                alert('Lütfen tüm alanları doldurun.');
+                alert(t('validateFields'));
                 createBtn.disabled = false;
                 createBtn.textContent = originalText;
                 return;
@@ -681,18 +717,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.execCommand('copy');
                     showCopiedMessage();
                 } catch (e) {
-                    alert('Kopyalama başarısız oldu. Lütfen linki manuel olarak kopyalayın.');
+                    alert(t('copyFail'));
                 }
             }
         });
 
         function showCopiedMessage() {
             copiedMsg.classList.remove('hidden');
-            copyBtn.textContent = '✅ Kopyalandı!';
+            copyBtn.textContent = t('copiedBtn');
 
             setTimeout(() => {
                 copiedMsg.classList.add('hidden');
-                copyBtn.textContent = '📋 Kopyala';
+                copyBtn.textContent = t('copyBtn');
             }, 2500);
         }
     }
@@ -794,8 +830,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (lockedSender) lockedSender.textContent = sender;
                 if (lockedRecipient) lockedRecipient.textContent = recipient;
 
+                // Mesajı güncelle
+                const lockedTitle = document.querySelector('.locked-title');
+                const lockedSubtitle = document.querySelector('.locked-subtitle');
+                const timeLeft = document.querySelector('.countdown-heading');
+
                 // Sayfa başlığını güncelle
-                document.title = `🔒 Kilitli Mesaj - ${recipient}`;
+                document.title = `🔒 ${t('pageTitleLocked')} - ${recipient}`;
 
                 // Geri sayım başlat
                 startCountdown(newYearDate);
@@ -1256,6 +1297,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sadece viewer modunda animasyonu başlat
     if (isViewerMode) {
         initNewYearAnimation();
+    }
+
+    // ============================================
+    // 9. DİNAMİK KUTLAMA METNİ (Celebration Text Animation)
+    // ============================================
+    window.updateCelebrationText = function (lang) {
+        const mainTitle = document.getElementById('mainTitle');
+        if (!mainTitle) return;
+
+        // Mevcut içeriği temizle
+        mainTitle.innerHTML = '';
+
+        // Çeviriyi al
+        const text = translations[lang] ? translations[lang].celebrationText : translations['en'].celebrationText;
+
+        // Harf harf oluştur
+        // "H a p p y  N e w  Y e a r !" formatında
+        const chars = text.split('');
+
+        chars.forEach(char => {
+            if (char === ' ') {
+                // Boşluk (kelime arası)
+                const space = document.createElement('span');
+                space.className = 'ny-space';
+                mainTitle.appendChild(space);
+            } else {
+                // Harf
+                const span = document.createElement('span');
+                span.className = 'ny-letter';
+                span.textContent = char;
+                mainTitle.appendChild(span);
+            }
+        });
+
+        // Animasyon delaylerini güncelle (eğer görünürse)
+        const letters = mainTitle.querySelectorAll('.ny-letter');
+        letters.forEach((letter, index) => {
+            letter.style.animationDelay = `${index * 0.05}s`;
+        });
+    };
+
+    // İlk yüklemede çalıştır (Viewer modundaysa)
+    if (isViewerMode) {
+        const initialLang = localStorage.getItem('lang') || 'en';
+        updateCelebrationText(initialLang);
     }
 
     // ============================================
